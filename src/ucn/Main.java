@@ -167,7 +167,6 @@ public class Main {
 				switch(opcion) {
 					case 1:
 						RegistrarAdmin(sistema);
-						sistema.usuarios.xd();
 						continue;
 					case 2:
 						continue;
