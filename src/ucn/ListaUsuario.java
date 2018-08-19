@@ -68,14 +68,6 @@ public class ListaUsuario {
 		return null;
 	}
 	
-	public void xd() {
-		NodoDobleUsuario aux = this.head;
-		for(int i=0; i<cant; i++) {
-			StdOut.println(aux.getUsuario().getEmail());
-			aux = aux.getSig();
-		}
-	}
-	
 	public int getCant() {
 		return this.cant;
 	}
