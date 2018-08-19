@@ -12,6 +12,7 @@ public class Main {
 		
 	}
 	public static void leer_usuarios() throws IOException { 
+		//ArchivoEntrada archivo_usuario = new ArchivoEntrada("la ruta donde tu guardaste el archivo carnal :v");
 		ArchivoEntrada archivo_usuario = new ArchivoEntrada("C:\\Users\\aleja\\Documents\\Git\\Taller4\\Archivos\\Usuarios.txt");
 		while(!archivo_usuario.isEndFile()) {
 			Registro reg = archivo_usuario.getRegistro();
