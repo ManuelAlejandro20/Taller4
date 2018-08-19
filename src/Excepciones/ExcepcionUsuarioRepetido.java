@@ -1,4 +1,4 @@
-package ucn;
+package Excepciones;
 
 public class ExcepcionUsuarioRepetido extends Exception {
 

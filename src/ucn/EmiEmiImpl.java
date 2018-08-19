@@ -12,9 +12,5 @@ public class EmiEmiImpl implements EmiEmi {
 	public boolean RegistrarUsuario(Usuario usuario) {
 		return usuarios.RegistrarUsuario(usuario);
 	}
-	
-	public ListaUsuario getñe() {
-		return usuarios;
-	}
 
 }
