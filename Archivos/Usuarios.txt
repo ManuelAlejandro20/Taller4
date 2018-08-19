@@ -1,0 +1,7 @@
+admin@emiemi.com,321,Anonimus,admin
+irf001@alumnos.ucn.cl,123,Ignacio R,cliente,Chile,60335
+aa@vtr.cl,asdf,Pero Q,cliente,Argentina,450
+bravo@gmail.com,madrid,Alan B,cliente,Alemania,960
+u-mat@yahoo.com,unif,Genoveva M,cliente,Escocia,541
+IFM@gmail.com,otro,Ignacio F,cliente,Chile,120
+K-san@xataka.jp,963147,Kato M,cliente,Japon,444

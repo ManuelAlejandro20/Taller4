@@ -1,0 +1,33 @@
+166816,Dark Angel Olivia,84000,FIGURE,SNB,12,14/06/2017,new,EmiEmi
+236321,Alphamax Kurumi - 1/7,71000,FIGURE,DAL,5,28/06/2017,new,EmiEmi
+269686,Kotobukiya Kurumi - 1/7,50000,FIGURE,DAL,7,27/05/2015,new,EmiEmi
+266736,Kasugano Sora - 1/7 - Black China Dress,84000,FIGURE,YNS,15,31/052016,new,EmiEmi
+264423,Kaneki Ken - ARTFX J,66000,FIGURE,TG,7,18/09/2015,new,EmiEmi
+286696,Tail Red - 1/8 ,66000,FIGURE,OTTNN,2,30/05/2016,new,EmiEmi
+144400,Max Factory Momo Belia Deviluke,56000,FIGURE,TLRD,4,20/01/2014,new,EmiEmi
+166752,Alter Yuuki Mikan - 1/7,60000,FIGURE,TLRD,8,01/09/2015,new,EmiEmi
+31747,Sengoku Nadeko - 1/8 ,56000,FIGURE,BMG,14,30/08/2011,new,EmiEmi
+78406,Oshino Shinobu - 1/8 ,44000,FIGURE,BMG,30,18/06/2014,new,EmiEmi
+166937,Alter Oshino Shinobu - 1/8,60000,FIGURE,BMG,3,07/07/2015,new,EmiEmi
+228577,Shokuhou Misaki - 1/7,90000,FIGURE,TAKNR,7,24/07/2015,new,EmiEmi
+110164,Charlotte Dunois - 4-Leaves,46000,FIGURE,IS,32,11/05/2015,new,EmiEmi
+198436,Charlotte Dunois - B-style - 1/4,110000,FIGURE,IS,9,15/01/2015,new,EmiEmi
+184408,Charlotte Dunois - Maid Ver.,53000,FIGURE,IS,11,29/09/2014,new,EmiEmi
+171454,Banpresto Charlotte Dunois - SQ,20000,FIGURE,IS,45,09/01/2014,new,EmiEmi
+78295,Sakagami Tomoyo - 4-Leaves,50000,FIGURE,CLANNAD,17,18/02/2015,new,EmiEmi
+26795,Alter Nakano Azusa - 1/8,40000,FIGURE,K-ON,10,25/06/2010,new,EmiEmi
+36177, Ryuuguu Rena - Angel Mort Uniform,8700,FIGURE,HNNKN,66,10/11/2010,new,EmiEmi
+116770,Misaki Mei - PM Figure,20000,FIGURE,ANOTHER,40,10/10/2012,new,EmiEmi
+137274,Vincent Valentine - Play Arts Kai,52000,FIGURE,FF7,26,27/09/2013,new,EmiEmi
+189,Miyanokouji Mizuho,20000,FIGURE,OWBNK,33,01/01/2006,new,EmiEmi
+78406-1,Oshino Shinobu - 1/8 ,97000,PREOWNED,BMG,1,18/06/2014,A,aa@vtr.cl
+78406-2,Oshino Shinobu - 1/8 ,66000,PREOWNED,BMG,1,18/06/2014,C,u-mat@yahoo.com
+166816-1,Dark Angel Olivia,136000,PREOWNED,SNB,1,14/06/2017,B,K-san@xataka.jp
+189-1,Miyanokouji Mizuho,15000,PREOWNED,OWBNK,1,01/01/2006,D,irf001@alumnos.ucn.cl
+54866,Shana - Messenger Bag,26000,MERCHANDISING,000,24,16/08/2018,new,EmiEmi
+40609,Sephiroth - Aroma Candle,13000,MERCHANDISING,FF7,80,16/08/2018,new,EmiEmi
+316800,Oshino Meme - Rubber Strap,3400,MERCHANDISING,BMG,98,16/08/2018,new,EmiEmi
+161030,Tokyo Ghoul - Comics 1,3000,MERCHANDISING,TG,110,16/08/2018,new,EmiEmi
+672009,Albedo - F:Nex - 1/7,95000,FIGURE,OVERLORD,70,01/01/2019,new,EmiEmi
+604425,Louise - 1/7 - Finale Wedding,110000,FIGURE,ZNT,52,01/03/2019,new,EmiEmi
+460687,Aniplex Allen Walker,105000,FIGURE,DGM,32,10/06/2019,new,EmiEmi
