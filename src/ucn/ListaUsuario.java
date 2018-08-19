@@ -59,16 +59,11 @@ public class ListaUsuario {
 					return usuario;
 				}
 				aux = aux.getSig();
-				
 			}
-			StdOut.println("\n XXXXXXX EL USUARIO NO EXISTE, INTENTALO DE NUEVO XXXXXXX\n");
 			return null;
 		}
-		StdOut.println("\nXXXXXX EL USUARIO NO FUE ENCONTRADO, PORFAVOR INTENTALO DE NUEVO XXXXXXX\n");
 		return null;
 	}
 	
-	public int getCant() {
-		return this.cant;
-	}
+	public int getCant() {return this.cant;}
 }

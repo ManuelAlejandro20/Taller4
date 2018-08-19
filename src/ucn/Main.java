@@ -101,7 +101,10 @@ public class Main {
 		System.out.println("\nIngresa tu contraseña\n");
 		String contraseña = scanner.nextLine();
 		Usuario usuario = sistema.usuarios.BuscarUsuario(email, contraseña);
-		if(usuario != null) {
+		if(usuario == null) {
+			StdOut.println("\n XXXXXXX LA CONTRASEÑA QUE INGRESASTE ES INCORRECTA O EL USUARIO NO EXISTE, INTENTALO DE NUEVO XXXXXXX\n");
+		}
+		else{
 			if(usuario.getClass().getSimpleName().equals("Cliente")) {
 				SubMenuCliente(sistema, usuario);
 			}

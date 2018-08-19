@@ -2,7 +2,6 @@ package Excepciones;
 
 public class ExcepcionUsuarioRepetido extends Exception {
 
-
 	public ExcepcionUsuarioRepetido() {
 		
 	}
