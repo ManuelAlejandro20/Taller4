@@ -74,13 +74,13 @@ public class Main {
 		Scanner scanner = new Scanner(System.in);
 		try {
 			StdOut.println("\nIngresa tus datos para registrarte porfavor\n");
-			System.out.println("\nEscribe tu correo\n");
+			StdOut.println("\nEscribe tu correo\n");
 			String email = scanner.nextLine();
-			System.out.println("\nEscribe tu contraseña\n");
+			StdOut.println("\nEscribe tu contraseña\n");
 			String contraseña = scanner.nextLine();
-			System.out.println("\nEscribe tu nombre\n");
+			StdOut.println("\nEscribe tu nombre\n");
 			String nombre = scanner.nextLine();
-			System.out.println("\nEscribe tu pais\n");
+			StdOut.println("\nEscribe tu pais\n");
 			String pais = scanner.nextLine();
 			Usuario usuario = new Cliente(email,contraseña,nombre,pais,0);
 			if(!sistema.RegistrarUsuario(usuario)) {
@@ -96,9 +96,9 @@ public class Main {
 
 	public static void IniciarSesion(EmiEmiImpl sistema) {
 		Scanner scanner = new Scanner(System.in);
-		System.out.println("\nIngresa tu email porfavor\n");
+		StdOut.println("\nIngresa tu email porfavor\n");
 		String email = scanner.nextLine();
-		System.out.println("\nIngresa tu contraseña\n");
+		StdOut.println("\nIngresa tu contraseña\n");
 		String contraseña = scanner.nextLine();
 		Usuario usuario = sistema.usuarios.BuscarUsuario(email, contraseña);
 		if(usuario == null) {
@@ -197,11 +197,11 @@ public class Main {
 		Scanner scanner = new Scanner(System.in);
 		try {
 			StdOut.println("\nIngresa los datos para registrar al nuevo Administrador porfavor\n");
-			System.out.println("\nEscribe su correo\n");
+			StdOut.println("\nEscribe su correo\n");
 			String email = scanner.nextLine();
-			System.out.println("\nEscribe su contraseña\n");
+			StdOut.println("\nEscribe su contraseña\n");
 			String contraseña = scanner.nextLine();
-			System.out.println("\nEscribe su nombre\n");
+			StdOut.println("\nEscribe su nombre\n");
 			String nombre = scanner.nextLine();
 			Usuario usuario = new Usuario(email,contraseña,nombre);
 			if(!sistema.RegistrarUsuario(usuario)) {
