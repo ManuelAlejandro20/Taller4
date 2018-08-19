@@ -5,7 +5,6 @@ public class EmiEmiImpl implements EmiEmi {
 	
 	public EmiEmiImpl() {
 		usuarios = new ListaUsuario();
-		
 	}
 
 	@Override

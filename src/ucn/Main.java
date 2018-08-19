@@ -166,6 +166,8 @@ public class Main {
 				int opcion = scanner.nextInt();
 				switch(opcion) {
 					case 1:
+						RegistrarAdmin(sistema);
+						sistema.usuarios.xd();
 						continue;
 					case 2:
 						continue;
@@ -187,6 +189,29 @@ public class Main {
 			}
 			
 		}
+	}
+
+	public static void RegistrarAdmin(EmiEmiImpl sistema) {
+		Scanner scanner = new Scanner(System.in);
+		try {
+			StdOut.println("\nIngresa los datos para registrar al nuevo Administrador porfavor\n");
+			System.out.println("\nEscribe su correo\n");
+			String email = scanner.nextLine();
+			System.out.println("\nEscribe su contraseña\n");
+			String contraseña = scanner.nextLine();
+			System.out.println("\nEscribe su nombre\n");
+			String nombre = scanner.nextLine();
+			Usuario usuario = new Usuario(email,contraseña,nombre);
+			if(!sistema.RegistrarUsuario(usuario)) {
+				throw new ExcepcionUsuarioRepetido();
+			}
+			else {
+				StdOut.println("\nEL Administrador "+ nombre +" fue agregado exitosamente\n");
+			}
+		}catch(ExcepcionUsuarioRepetido e) {
+			StdOut.println(e.mensaje());
+		}
+		
 	}
 
 }
