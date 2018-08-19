@@ -7,15 +7,15 @@ public class Main {
 
 	public static void main(String args[]) throws IOException {
 		//EmiEmiImpl sistema = new EmiEmiImpl();
-		leer_usuarios();
-		menu();
+		LeerUsuarios();
+		Menu();
 		
 	}
-	public static void leer_usuarios() throws IOException { 
+	public static void LeerUsuarios() throws IOException { 
 		//ArchivoEntrada archivo_usuario = new ArchivoEntrada("la ruta donde tu guardaste el archivo carnal :v");
-		ArchivoEntrada archivo_usuario = new ArchivoEntrada("C:\\Users\\aleja\\Documents\\Git\\Taller4\\Archivos\\Usuarios.txt");
-		while(!archivo_usuario.isEndFile()) {
-			Registro reg = archivo_usuario.getRegistro();
+		ArchivoEntrada _archivousuario = new ArchivoEntrada("C:\\Users\\aleja\\Documents\\Git\\Taller4\\Archivos\\Usuarios.txt");
+		while(!_archivousuario.isEndFile()) {
+			Registro reg = _archivousuario.getRegistro();
 			String email = reg.getString();
 			String contraseña = reg.getString();
 			String nombre = reg.getString();
@@ -34,7 +34,7 @@ public class Main {
 		}
 	}
 	
-	public static void menu() {
+	public static void Menu() {
 		Scanner scanner = new Scanner(System.in);
 		boolean salir = false;
 		while(!salir) {
@@ -67,7 +67,7 @@ public class Main {
 		scanner.close();
 	}
 	
-	public static void iniciar_sesion() {
+	public static void IniciarSesion() {
 		
 		
 	}
