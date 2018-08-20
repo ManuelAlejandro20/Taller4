@@ -78,8 +78,11 @@ public class Cliente extends Usuario {
 	 * 
 	 * @param producto:
 	 * 				The product
+	 * @param stock:
+	 * 				How many products will be added to the shopping cart
 	 */
-	public void AñadirAlCarrito(Producto producto) {
+	public void AñadirAlCarrito(Producto producto, int stock) {
+		producto.AumentarStockCarrito(stock);
 		this.carritoCompras.add(producto);
 	}
 	
@@ -93,9 +96,33 @@ public class Cliente extends Usuario {
 		Iterator<Producto> it = carritoCompras.iterator();
 		
 		while (it.hasNext()) {
-			montoTotal += ((Producto)it.next()).getPrecio();
+			Producto producto = (Producto)it.next();
+			
+			montoTotal += producto.getPrecio() * producto.getStockCarrito();
 		}
 		
 		return montoTotal;
+	}
+	
+	/**
+	 * Empty the shopping cart
+	 */
+	public void VaciarCarrito () {
+		
+		Iterator<Producto> it = carritoCompras.iterator();
+		
+		while (it.hasNext()) {
+			Producto producto = (Producto)it.next();
+			producto.ResetearStock();
+		}
+		
+		this.carritoCompras.clear();
+	}
+	
+	/**
+	 * @return an String with the client information
+	 */
+	public String deployCliente () {
+		return ("Email: " + this.getEmail() + "; Nombre: " + this.getNombre() + "; Pais: " + this.pais + "; Puntos: " + this.puntos);
 	}
 }

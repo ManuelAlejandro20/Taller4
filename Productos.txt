@@ -1,7 +1,7 @@
 166816,Dark Angel Olivia,84000,FIGURE,SNB,12,14/06/2017,new,EmiEmi
 236321,Alphamax Kurumi - 1/7,71000,FIGURE,DAL,5,28/06/2017,new,EmiEmi
 269686,Kotobukiya Kurumi - 1/7,50000,FIGURE,DAL,7,27/05/2015,new,EmiEmi
-266736,Kasugano Sora - 1/7 - Black China Dress,84000,FIGURE,YNS,15,31/052016,new,EmiEmi
+266736,Kasugano Sora - 1/7 - Black China Dress,84000,FIGURE,YNS,15,31/05/2016,new,EmiEmi
 264423,Kaneki Ken - ARTFX J,66000,FIGURE,TG,7,18/09/2015,new,EmiEmi
 286696,Tail Red - 1/8 ,66000,FIGURE,OTTNN,2,30/05/2016,new,EmiEmi
 144400,Max Factory Momo Belia Deviluke,56000,FIGURE,TLRD,4,20/01/2014,new,EmiEmi

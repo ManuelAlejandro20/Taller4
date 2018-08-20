@@ -33,6 +33,34 @@ public class ListaUsuario {
 		
 	}
 	
+	public boolean EliminarUsuario(Usuario usuario) {
+		if (!ExisteUsuario(usuario)) {
+			return false;
+		} 
+			
+		if (this.head.getUsuario().getEmail().equals(usuario.getEmail())) {
+			if(this.head.getSig() != null) {
+				this.head.getSig().setPreb(null);
+				return true;
+			} else {
+				this.head = null;
+				return true;
+			}
+		}
+		
+		NodoDobleUsuario aux = this.head.getSig();
+		while (aux.getSig() != null) {
+			if (aux.getUsuario().getEmail().equals(usuario.getEmail())) {	
+				aux.getPreb().setSig(aux.getSig());
+				aux.getSig().setPreb(aux.getPreb());
+				this.cant--;
+				return  true;
+			}
+			aux = aux.getSig();
+		}
+		return false;
+	}
+	
 	
 	public boolean ExisteUsuario(Usuario usuario) {
 		if(this.head == null) {
@@ -64,6 +92,22 @@ public class ListaUsuario {
 		}
 		return null;
 	}
+	
+	public Usuario BuscarUsuario(String email) {
+		if(head != null) {
+			NodoDobleUsuario aux = this.head;
+			for(int i=0; i<cant; i++) {
+				Usuario usuario = aux.getUsuario();
+				if(usuario.getEmail().equals(email)) {
+					return usuario;
+				}
+				aux = aux.getSig();
+			}
+			return null;
+		}
+		return null;
+	}
+	
 	
 	public int getCant() {return this.cant;}
 }

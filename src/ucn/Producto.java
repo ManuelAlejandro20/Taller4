@@ -7,34 +7,37 @@ package ucn;
  */
 public class Producto {
 	
-	// El SKU identificador del producto
+	// The product SKU, serves to identify it
 	private String SKU;
 	
-	// El nombre del producto
+	// The product name
 	private String nombre;
 	
-	// El precio del producto
+	// The product price
 	private int precio;
 	
-	// El codigo de relacion del producto. Permite relacionar a este producto con otros de igual codigo
+	// The product relationship code. It allows to relate this product with others of the same code
 	private String codigoRelacion;
 	
-	// La cantidad de ejemplares que hay de este producto en la tienda
+	// The number of copies of this product in the store
 	private int stock;
 	
+	// The number of copies of this product in the shopping cart
+	private int stockCarrito;
+	
 	/**
-	 * Rutina constructora para un producto
+	 * Construction routine for a figure
 	 * 
 	 * @param SKU:
-	 * 			El SKU del producto
+	 * 			The figure SKU
 	 * @param nombre:
-	 * 			El nombre del producto
+	 * 			The figure name
 	 * @param precio:
-	 * 			El precio del producto
+	 * 			The figure price
 	 * @param codigoRelacion:
-	 * 			El codigo de relacion del producto
+	 * 			The figure relationship code
 	 * @param stock:
-	 * 			El stock del producto
+	 * 			The figure stock
 	 */
 	public Producto(String SKU, String nombre, int precio, String codigoRelacion, int stock) {
 		this.SKU = SKU;
@@ -42,60 +45,76 @@ public class Producto {
 		this.precio = precio;
 		this.codigoRelacion = codigoRelacion;
 		this.stock = stock;
+		this.stockCarrito = 0; // A product isn't created in a shopping cart
 	}
 	
 	/**
-	 * @return un String  con el SKU del producto
+	 * @return a Strig with the product SKU
 	 */
 	public String getSKU() {
 		return SKU;
 	}
 	
 	/**
-	 * @return un String con el nombre del producto
+	 * @return a String with the product name
 	 */
 	public String getNombre() {
 		return nombre;
 	}
 	
 	/**
-	 * @return un int con el precio del producto
+	 * @return an it with the product price
 	 */
 	public int getPrecio() {
 		return precio;
 	}
 
 	/**
-	 * @return un String con el codigo de relacion
+	 * @return a String with the relationship code
 	 */
 	public String getCodigoRelacion() {
 		return codigoRelacion;
 	}
 	
 	/**
-	 * @return un int con el stock actual del producto
+	 * @return an int with the actual stock of the product
 	 */
 	public int getStock() {
 		return stock;
 	}
 	
 	/**
-	 * Aumenta el stock del prodcuto
-	 * 
-	 * @param stock:
-	 * 			En cuanto se va a aumentar el stock
+	 * @return an int with the amount of products that are in the shopping cart
 	 */
-	public void AgregarStock (int stock) {
-		this.stock += stock;
+	public int getStockCarrito() {
+		return this.stockCarrito;
 	}
 	
 	/**
-	 * Disminuye el stock del producto
+	 * Increase the amount of products in the shopping cart and decrease those in the store
 	 * 
 	 * @param stock:
-	 * 			En cuanto se va a disminuir el stock
+	 * 			How much the shopping cart stock will increase
 	 */
-	public void DisminuirStock (int stock) {
+	public void AumentarStockCarrito (int stock) {
+		this.stockCarrito += stock;
 		this.stock -= stock;
 	}
+	
+	/**
+	 * Returns the products that are in the shopping cart to the store
+	 */
+	public void ResetearStock () {
+		this.stock += this.stockCarrito;
+		this.stockCarrito = 0;
+	}
+	/**
+	 * Increase the stock of the product
+	 * 
+	 * @param stock:
+	 * 			The amount of stock that is going to be added
+	 */
+	public void AgregarStock (int stock) {
+		this.stock += stock;
+	}	
 }
