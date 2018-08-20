@@ -35,5 +35,34 @@ public class FiguraUsada extends Figura {
 	 */
 	public Cliente getDueño () {
 		return this.dueño;
-	}	
+	}
+	
+	/**
+	 * @return a String with the figure information
+	 */
+	@Override
+	public String deployProducto() {
+		String condicionDesplegar = "Usado";
+		switch(this.getCondicion().toUpperCase()) {
+			case "A":
+				condicionDesplegar = "Sellado";
+				break;
+			case "B":
+				condicionDesplegar = "Aparentemente nuevo";
+				break;
+			case "C":
+				condicionDesplegar = "Abierto";
+				break;
+			case "D":
+				condicionDesplegar = "Daños menores";
+				break;
+			case "E":
+				condicionDesplegar = "Daños visibles";
+				break;
+			case "F":
+				condicionDesplegar = "Piezas extraviadas";
+				break;
+		}
+		return ("SKU: " + this.getSKU() + "; Nombre: " + this.getNombre() + "; Precio: " + this.getPrecio() + "; Condicion: " + condicionDesplegar + "; Stock: 1");
+	}
 }

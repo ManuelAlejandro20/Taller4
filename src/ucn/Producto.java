@@ -116,5 +116,16 @@ public class Producto {
 	 */
 	public void AgregarStock (int stock) {
 		this.stock += stock;
-	}	
+	}
+	
+	/**
+	 * @return a String with the product information
+	 */
+	public String deployProducto() {
+		if (this.stock <= 0) {
+			return ("SKU: " + this.SKU + "; Nombre: " + this.nombre + "; Precio: " + this.precio + "; SIN STOCK");
+		} else {
+			return ("SKU: " + this.SKU + "; Nombre: " + this.nombre + "; Precio: " + this.precio + "; Stock: " + this.stock);
+		}
+	}
 }

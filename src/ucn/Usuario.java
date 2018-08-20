@@ -52,4 +52,11 @@ public class Usuario {
 	public String getNombre() {
 		return nombre;
 	}
+	
+	/**
+	 * @return a String with the user information
+	 */
+	public String deployUsuario () {
+		return ("Email: " + this.email + "; Nombre: " + this.nombre);
+	}
 }

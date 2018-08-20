@@ -122,7 +122,8 @@ public class Cliente extends Usuario {
 	/**
 	 * @return an String with the client information
 	 */
-	public String deployCliente () {
+	@Override
+	public String deployUsuario () {
 		return ("Email: " + this.getEmail() + "; Nombre: " + this.getNombre() + "; Pais: " + this.pais + "; Puntos: " + this.puntos);
 	}
 }

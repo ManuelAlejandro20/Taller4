@@ -57,4 +57,23 @@ public class Figura extends Producto {
 	public void setCondicion(String condicion) {
 		this.condicion = condicion;
 	}
+	/**
+	 * @return a String with the product information
+	 */
+	@Override
+	public String deployProducto() {
+		if (this.getStock() <= 0) {
+			if (this.condicion.equals("pre-venta")) {
+				return ("SKU: " + this.getSKU() + "; Nombre: " + this.getNombre() + "; Precio Oferta: " + this.getPrecio() +  "; Condicion: Pre-venta; SIN STOCK");
+			} else {
+				return ("SKU: " + this.getSKU() + "; Nombre: " + this.getNombre() + "; Precio: " + this.getPrecio() + "; Condicion: Nuevo; SIN STOCK");
+			}
+		} else {
+			if (this.condicion.equals("pre-venta")) {
+				return ("SKU: " + this.getSKU() + "; Nombre: " + this.getNombre() + "; Precio Oferta: " + this.getPrecio() +  "; Condicion: Pre-venta; Stock" + this.getStock());
+			} else {
+				return ("SKU: " + this.getSKU() + "; Nombre: " + this.getNombre() + "; Precio: " + this.getPrecio() + "; Condicion: Nuevo; Stock: " + this.getStock());
+			}
+		}
+	}
 }

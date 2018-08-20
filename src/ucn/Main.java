@@ -1,7 +1,5 @@
 package ucn;
-import java.util.Date;
-import java.util.InputMismatchException;
-import java.util.Scanner;
+import java.util.*;
 import Excepciones.ExcepcionUsuarioRepetido;
 import java.io.IOException;
 import java.text.DateFormat;
@@ -29,6 +27,10 @@ public class Main {
 			if(tipo.equals("cliente")) {
 				String pais = reg.getString();
 				int puntos = reg.getInt();
+				if (sistema.BuscarPais(pais) == null) {
+					Pais nuevoPais = new Pais(pais);
+					sistema.AñadirPais(nuevoPais);
+				}
 				Usuario cliente = new Cliente(email,contraseña,nombre,pais,puntos);
 				sistema.RegistrarUsuario(cliente);
 			}
@@ -129,6 +131,10 @@ public class Main {
 				throw new ExcepcionUsuarioRepetido();
 			}
 			else {
+				if (sistema.BuscarPais(pais) == null) {
+					Pais nuevoPais = new Pais(pais);
+					sistema.AñadirPais(nuevoPais);
+				}
 				StdOut.println("\nEL usuario "+ nombre +" fue agregado exitosamente\n");
 			}
 		}catch(ExcepcionUsuarioRepetido e) {
@@ -172,6 +178,7 @@ public class Main {
 				int opcion = scanner.nextInt();
 				switch(opcion) {
 					case 1:
+						BuscarProductos(sistema);
 						continue;
 					case 2:
 						continue;
@@ -262,12 +269,12 @@ public class Main {
 	
 	public static void EliminarUsuario(EmiEmiImpl sistema) {
 		Scanner scanner = new Scanner(System.in);
-		boolean salir4 = false;
-		while (!salir4) {
+		boolean salir = false;
+		while (!salir) {
 			StdOut.println("\nIngrese el email del cliente que desea eliminar (-1 para cancelar)\n");
 			String email = scanner.nextLine();
 			if (email.equals("-1")) {
-				salir4 = true;
+				salir = true;
 			} else {
 				Usuario usuario = sistema.getUsuarios().BuscarUsuario(email);
 				if (usuario == null) {
@@ -275,10 +282,10 @@ public class Main {
 				} else if (!(usuario instanceof Cliente)) {
 					StdOut.println("\n XXXXXXX EL USUARIO NO ES UN CLIENTE, INTENTALO DE NUEVO XXXXXXX\n");
 				} else {
-					boolean salir5 = false;
-					while(!salir5) {
+					boolean salir2 = false;
+					while(!salir2) {
 						try {
-							StdOut.println("\n" + ((Cliente)usuario).deployCliente() + "\n");
+							StdOut.println("\n" + ((Cliente)usuario).deployUsuario() + "\n");
 							StdOut.println("¿Desea eliminar a este cliente?\n");
 							StdOut.println("1. Si");
 							StdOut.println("2. No\n");
@@ -287,11 +294,11 @@ public class Main {
 								case 1:
 									StdOut.println("\nLa cuenta del cliente " + usuario.getNombre() + " fue eliminada\n");
 									sistema.EliminarUsuario(usuario);
-									salir5 = true;
+									salir2 = true;
 									break;
 								case 2:
 									StdOut.println("\nEliminacion abortada\n");
-									salir5 = true;
+									salir2 = true;
 									break;
 								default:
 									StdOut.println("\nXXXXXXXXXXXX Escribe una opción valida porfavor XXXXXXXXXXXXX\n");
@@ -301,7 +308,7 @@ public class Main {
 							scanner.nextLine();
 						}
 					}
-					salir4 = true;
+					salir = true;
 				}
 			}
 		}
@@ -309,55 +316,59 @@ public class Main {
 	
 	public static void AñadirNuevoStock(EmiEmiImpl sistema) {
 		Scanner scanner = new Scanner(System.in);
-		boolean salir6 = false;
-		while (!salir6) {
+		boolean salir = false;
+		while (!salir) {
 			StdOut.println("\nIngrese el SKU del producto al cual desea aumentar el stock (-1 para cancelar)\n");
 			String SKU = scanner.nextLine();
 			if (SKU.equals("-1")) {
-				salir6 = true;
+				salir = true;
 			} else {
 				Producto producto = sistema.BuscarProducto(SKU);
 				if (producto != null) {
 					StdOut.println("\nProducto encontrado = SKU: " + producto.getSKU() + "; Nombre: " + producto.getNombre() + "; Stock actual: " + producto.getStock() + "\n");
 					StdOut.println("¿Cuantas unidades desea agregar?\n");
-					boolean salir7 = false;
+					boolean salir2 = false;
 					int stockAgregar = scanner.nextInt();
-					while (!salir7) {
+					while (!salir2) {
 						try {
-							while (stockAgregar <= 0) {
+							while (stockAgregar < 0) {
 								StdOut.println("\nXXXXXXXXXXXX Escribe una opción valida porfavor XXXXXXXXXXXXX\n");
 								stockAgregar = scanner.nextInt();
 							}
-							salir7 = true;
+							salir2 = true;
 						} catch(InputMismatchException e) {
+							if (stockAgregar < 0) {
+								StdOut.println("\nXXXXXXXXX VERIFICA QUE SEA UN NUMERO PORFAVOR XXXXXXXXXXXX\n");
+							} else {
 							StdOut.println("\nXXXXXXXXX ESCRIBE UN NÚMERO PORFAVOR XXXXXXXXXXXX\n");
+							}
 							scanner.nextLine();
 						}
 					}
 					sistema.AñadirStock(producto, stockAgregar);
 					StdOut.println("\nStock Añadido\n");
-					salir6 = true;
+					salir = true;
 				} else {
 					DateFormat formato = new SimpleDateFormat("dd/MM/YYYY");
 					String fechaActual = formato.format(new Date());
-					boolean salir8 = false;
-					while (!salir8) {
+					boolean salir3 = false;
+					while (!salir3) {
 					try {
 							StdOut.println("\nIngrese los datos para añadir el nuevo producto porfavor:\n");
 							StdOut.println("\nEscribe el nombre del producto\n");
 							String nombre = scanner.nextLine();
 							StdOut.println("\nEscribe el precio del producto\n");
 							int precio = scanner.nextInt();
+							scanner.nextLine();
 							StdOut.println("\nEscribe el codigo de relacion del prodcuto (000 para indicar que no hay productos relacionados)\n");
 							String codigoRelacion = scanner.nextLine();
 							StdOut.println("\nEscriba el stock inicial del producto\n");
 							int stock = -1;
-							
-							boolean salir11 = false;
 
 							while(stock <= -1) {
 								try {
 									stock = scanner.nextInt();
+									scanner.nextLine();
 								} catch (InputMismatchException e) {
 									StdOut.println("\nXXXXXXXXX INGRESE UN STOCK VALIDO PORFAVOR XXXXXXXXXXXX\n");
 									scanner.nextInt();
@@ -368,9 +379,9 @@ public class Main {
 							String fechaVenta = scanner.nextLine();
 							String condicion = "new";
 							
-							boolean salir9 = false;
+							boolean salir4 = false;
 							
-							while (!salir9) {
+							while (!salir4) {
 								try {
 									Date fechaActual1 = formato.parse(fechaActual);
 									Date fechaProducto = formato.parse(fechaVenta);
@@ -379,16 +390,16 @@ public class Main {
 										precio -= precio * 0.2;
 										//StdOut.print("SKU: " + SKU + "; Precio: " + precio + "; Condicion: " + condicion);
 									}
-									salir9 = true;
+									salir4 = true;
 								} catch (ParseException e) {
 									StdOut.println("\nXXXXXXXXX ESCRIBE UNA FECHA VALIDA PORFAVOR XXXXXXXXXXXX\n");
 									fechaVenta = scanner.nextLine();
 								}
 							}
 							
-							boolean salir10 = false;
+							boolean salir5 = false;
 							
-							while(!salir10) {
+							while(!salir5) {
 								try {
 									StdOut.println("\nEscribe el tipo de producto (MERCHANDISIG o FIGURE)");
 									String tipo = scanner.nextLine().toUpperCase();
@@ -398,13 +409,13 @@ public class Main {
 											Producto productoAgregar = new Producto (SKU, nombre, precio, codigoRelacion, stock);
 											sistema.AñadirProducto(productoAgregar);
 											StdOut.println("\nProducto agregado al inventario de la tienda\n");
-											salir10 = true;
+											salir5 = true;
 											break;
 										case "FIGURE":
 											Producto productoAgregar1 = new Figura (SKU, nombre, precio, codigoRelacion, stock, fechaVenta, condicion);
 											sistema.AñadirProducto(productoAgregar1);
 											StdOut.println("\nProducto agregado al inventario de la tienda\n");
-											salir10 = true;
+											salir5 = true;
 											break;
 										default:
 											StdOut.println("\nXXXXXXXXXXXX Escribe una opción valida porfavor XXXXXXXXXXXXX\n");		
@@ -418,13 +429,92 @@ public class Main {
 							StdOut.println("\nXXXXXXXXX ESCRIBE UNA PALABRA PORFAVOR XXXXXXXXXXXX\n");
 							scanner.nextLine();
 						}
-						salir8 = true;
+						salir3 = true;
 					}
 				}
 			}
-			salir6 = true;
+			salir = true;
 		}
 	}
+	
+	public static void BuscarProductos(EmiEmiImpl sistema) {
+		Scanner scanner = new Scanner(System.in);
+		boolean salir = false;
+		while (!salir) {
+			StdOut.println("\nIngresa una palabra o frase de entre 4 a 20 caracteres, relacionada con el producto buscado (-1 para cancelar)\n");
+			String fraseClave = scanner.nextLine();
+			fraseClave = fraseClave.replaceAll(" ", "");
+			if (fraseClave.equals("-1")) {
+				salir = true;
+			}
+			if (fraseClave.length() >= 4 && fraseClave.length() <= 20) {
+				ArrayList<Producto> productosEncontrados = sistema.BuscarProductos(fraseClave);
+				if (productosEncontrados.isEmpty()) {
+					StdOut.println("\nNo hay productos que coincidan con la busqueda\n");
+					salir = true;
+				} else {
+					Iterator<Producto> it = productosEncontrados.iterator();
+					while (it.hasNext()) {
+						Producto producto = (Producto)it.next();
+						if (producto instanceof Figura) {
+							StdOut.println("\n- " + ((Figura)producto).deployProducto() + "\n");
+						} else if (producto instanceof FiguraUsada) {
+							StdOut.println("\n- " + ((FiguraUsada)producto).deployProducto() + "\n");
+						} else {
+							StdOut.println("\n- " + producto.deployProducto() + "\n");
+						}
+					}
+					salir = true;
+				}
+			} else {
+				StdOut.println("\nXXXXXXXXXXXX La palabra o frase que ingresaste es muy pequeña o demaciado larga XXXXXXXXXXXXX\n");
+			}
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
 
 
