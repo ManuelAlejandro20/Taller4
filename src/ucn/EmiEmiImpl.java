@@ -1,6 +1,6 @@
 package ucn;
 
-public class EmiEmiImpl implements EmiEmi {
+public class EmiEmiImpl implements SistemaEmiEmi {
 	ListaUsuario usuarios;
 	
 	public EmiEmiImpl() {

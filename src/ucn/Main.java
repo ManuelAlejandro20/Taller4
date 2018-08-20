@@ -13,8 +13,7 @@ public class Main {
 		
 	}
 	public static void LeerUsuarios(EmiEmiImpl sistema) throws IOException { 
-		//ArchivoEntrada archivoUsuario = new ArchivoEntrada("la ruta donde tu guardaste el archivo carnal :v");
-		ArchivoEntrada archivoUsuario = new ArchivoEntrada("C:\\Users\\aleja\\Documents\\Git\\Taller4\\Archivos\\Usuarios.txt");
+		ArchivoEntrada archivoUsuario = new ArchivoEntrada("Usuarios.txt");
 		while(!archivoUsuario.isEndFile()) {
 			Registro reg = archivoUsuario.getRegistro();
 			String email = reg.getString();

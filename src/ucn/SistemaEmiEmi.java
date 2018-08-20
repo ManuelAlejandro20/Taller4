@@ -1,6 +1,6 @@
 package ucn;
 
-public interface EmiEmi {
+public interface SistemaEmiEmi {
 
 	public boolean RegistrarUsuario(Usuario usuario);
 	
