@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+<<<<<<< HEAD
+	<classpathentry exported="true" kind="lib" path="C:/Users/Inexpro Gamer/Desktop/Muchas cosas de la universidad/StdUCN-6.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/aleja/Desktop/eclipse/libreria/StdUCN-6.0.jar"/>
+=======
+	<classpathentry kind="lib" path="C:/Users/matth/Documents/GitHub/Taller4/StdUCN-6.0.jar"/>
+>>>>>>> 4ee4cc5f1923a8c234158abbd3d9f80af419755e
+	<classpathentry kind="output" path="bin"/>
+</classpath>
