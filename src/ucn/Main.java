@@ -181,6 +181,7 @@ public class Main {
 						BuscarProductos(sistema);
 						continue;
 					case 2:
+						DesplegarCatalogo(sistema);
 						continue;
 					case 3:
 						continue;
@@ -375,7 +376,7 @@ public class Main {
 								}
 							}
 							
-							StdOut.println("\nEscribe la fecha de venta en el formato dd/MM/YYYY.\n(Si es una figura y la fecha de venta es superior a la fecha\nactual, automaticamente se pondra como pre-venta y se aplica el descuento del 20%");
+							StdOut.println("\nEscribe la fecha de venta en el formato dd/MM/YYYY.\n(Si es una figura y la fecha de venta es superior a la fecha\nactual, automaticamente se pondra como pre-venta y se aplica el descuento del 20%\n");
 							String fechaVenta = scanner.nextLine();
 							String condicion = "new";
 							
@@ -385,16 +386,32 @@ public class Main {
 								try {
 									Date fechaActual1 = formato.parse(fechaActual);
 									Date fechaProducto = formato.parse(fechaVenta);
+									StdOut.println(fechaActual1);
 									if (fechaProducto.after(fechaActual1)) {
 										condicion = "pre-venta";
 										precio -= precio * 0.2;
-										//StdOut.print("SKU: " + SKU + "; Precio: " + precio + "; Condicion: " + condicion);
 									}
+									if (!formato.format(fechaProducto).equals(fechaVenta)) {
+										StdOut.println(formato.format(fechaProducto) + "\n" + fechaVenta);
+										StdOut.println("\nXXXXXXX ¿ESTAS SEGURO DE QUE ESO ES UNA FECHA? INTENTALO OTRA VEZ XXXXXXXX\n");
+										fechaVenta = scanner.nextLine();
+									} else {
 									salir4 = true;
+									}
 								} catch (ParseException e) {
 									StdOut.println("\nXXXXXXXXX ESCRIBE UNA FECHA VALIDA PORFAVOR XXXXXXXXXXXX\n");
 									fechaVenta = scanner.nextLine();
 								}
+							}
+							
+							String []fechaVector = fechaVenta.split("/");
+							int añoConfirmacion = Integer.parseInt(fechaVector[2]);
+							if(añoConfirmacion >= 2040) {
+								StdOut.println("\nEspero que estes vivo para cuando este producto se venda\n");
+							} else if (añoConfirmacion >= 2022) {
+								StdOut.println("\n¿Para ese entonces no deberia de existir SAO?, espero que logres vender este producto");
+							} else if (añoConfirmacion <= 1950) {
+								StdOut.println("\nTienes una reliquia entre manos, felicidades\n");
 							}
 							
 							boolean salir5 = false;
@@ -469,6 +486,94 @@ public class Main {
 			} else {
 				StdOut.println("\nXXXXXXXXXXXX La palabra o frase que ingresaste es muy pequeña o demaciado larga XXXXXXXXXXXXX\n");
 			}
+		}
+	}
+	
+	public static void DesplegarCatalogo (EmiEmiImpl sistema) {
+		Scanner scanner = new Scanner(System.in);
+		boolean salir = false;
+		while (!salir) {
+			try {
+				StdOut.println("\n¿Que desea desplegar? (-1 para cancelar)\n");
+				StdOut.println("1. Mercancia");
+				StdOut.println("2. Figuras\n");
+				int opcion = scanner.nextInt();
+				switch (opcion) {
+					case 1:
+						StdOut.println("\n¿Desea mostrar los productos fuera de stock?\n");
+						StdOut.println("1. Si");
+						StdOut.println("2. No\n");
+						boolean salir2 = false;
+						boolean opcionIncorrecta = false;
+						while (!salir2) {
+							Scanner scanner2 = new Scanner(System.in);
+							int opcion2 = scanner2.nextInt();
+							switch (opcion2) {
+								case 1:
+									sistema.DesplegarMercancias(false);
+									break;
+								case 2:
+									sistema.DesplegarMercancias(true);
+									break;
+								case -1:
+									salir2 = true;
+								default:
+									StdOut.println("\nXXXXXXXXXXXX Escribe una opción valida porfavor XXXXXXXXXXXXX\n");
+							}
+							if (opcionIncorrecta) {
+								StdOut.println("\n¿Desea mostrar los productos fuera de stock?\n");
+								opcionIncorrecta = false;
+							} else {
+								StdOut.println("\n¿Desea mostrar los productos fuera de stock? (-1 para terminar)\n");
+							}
+							StdOut.println("1. Si");
+							StdOut.println("2. No\n");
+						}
+						salir = true;
+						break;
+					case 2:
+						StdOut.println("\n¿Desea mostrar los productos fuera de stock?\n");
+						StdOut.println("1. Si");
+						StdOut.println("2. No\n");
+						boolean opcionIncorrecta2 = false;
+						boolean salir3 = false;
+						while (!salir3) {
+							Scanner scanner2 = new Scanner(System.in);
+							int opcion2 = scanner2.nextInt();
+							switch (opcion2) {
+								case 1:
+									sistema.DesplegarFiguras(false);
+									break;
+								case 2:
+									sistema.DesplegarFiguras(true);
+									break;
+								case -1:
+									salir3 = true;
+								default:
+									StdOut.println("\nXXXXXXXXXXXX Escribe una opción valida porfavor XXXXXXXXXXXXX\n");
+									opcionIncorrecta2 = true;
+							}
+							if (opcionIncorrecta2) {
+								StdOut.println("\n¿Desea mostrar los productos fuera de stock?\n");
+								opcionIncorrecta2 = false;
+							} else {
+								StdOut.println("\n¿Desea mostrar los productos fuera de stock? (-1 para terminar)\n");
+							}
+							StdOut.println("1. Si");
+							StdOut.println("2. No\n");
+						}
+						salir = true;
+						break;
+					case -1:
+						salir = true;
+					default:
+						StdOut.println("\nXXXXXXXXXXXX Escribe una opción valida porfavor XXXXXXXXXXXXX\n");
+				}
+			} catch (InputMismatchException e) {
+				StdOut.println("\nXXXXXXXXX ESCRIBE UN NUMERO PORFAVOR XXXXXXXXXXXX\n");
+				scanner.nextLine();
+			}
+			
 		}
 	}
 	

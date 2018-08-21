@@ -48,6 +48,52 @@ public class EmiEmiImpl implements SistemaEmiEmi {
 		return productosEncontrados;
 	}
 	
+	@Override
+	public void DesplegarMercancias(boolean filtrarStock){
+		ArrayList<Producto> productosADesplegar = new ArrayList<Producto>();
+		Iterator<Producto> it = this.productos.iterator();
+		while (it.hasNext()) {
+			Producto producto = it.next();
+			if (!(producto instanceof Figura) && !(producto instanceof FiguraUsada)) {
+				if (filtrarStock) {
+					if (producto.getStock() >= 1) {
+						productosADesplegar.add((Producto)producto);
+					}
+				} else {
+					productosADesplegar.add((Producto)producto);
+				}
+			}
+		}
+		Iterator<Producto> it2 = productosADesplegar.iterator();
+		while (it2.hasNext()) {
+			Producto producto = (Producto)it2.next();
+			StdOut.println("\n- " + producto.deployProducto());
+		}
+	}
+	
+	@Override
+	public void DesplegarFiguras(boolean filtrarStock){
+		ArrayList<Figura> productosADesplegar = new ArrayList<Figura>();
+		Iterator<Producto> it = this.productos.iterator();
+		while (it.hasNext()) {
+			Producto producto = (Producto)it.next();
+			if (producto instanceof Figura && !(producto instanceof FiguraUsada)) {
+				if (filtrarStock) {
+					if (producto.getStock() >= 1) {
+						productosADesplegar.add((Figura)producto);
+					}
+				} else {
+					productosADesplegar.add((Figura)producto);
+				}
+			}
+		}
+		Iterator<Figura> it2 = productosADesplegar.iterator();
+		while (it2.hasNext()) {
+			Figura figura = (Figura)it2.next();
+			StdOut.println("\n- " + figura.deployProducto());
+		}
+	}
+	
 	//region Generics List Methods -- Why don't you work like Visual Studio? D:<
 	
 	public Producto BuscarProducto (String SKU) {
