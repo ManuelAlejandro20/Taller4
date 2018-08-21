@@ -9,7 +9,7 @@ public class Pais {
 	private int ingresos;
 
 	/**
-	 * Constructioun routine of a country
+	 * Construction routine of a country
 	 * 
 	 * @param nombre:
 	 * 			The country name
