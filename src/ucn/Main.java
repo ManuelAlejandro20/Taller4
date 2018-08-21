@@ -5,6 +5,10 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.DateTimeException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 public class Main {
 
@@ -43,8 +47,9 @@ public class Main {
 	}
 	
 	public static void LeerProductos(EmiEmiImpl sistema) throws IOException, ParseException {
-		DateFormat formato = new SimpleDateFormat("dd/MM/YYYY");
-		String fechaActual = formato.format(new Date());
+		DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		LocalDate localDate = LocalDate.now();
+		LocalDate fechaActual = LocalDate.parse(LocalDate.now().format(formato), formato);
 		ArchivoEntrada archivoProducto = new ArchivoEntrada("Productos.txt");
 		while (!archivoProducto.isEndFile()) {
 			Registro reg = archivoProducto.getRegistro();
@@ -61,12 +66,10 @@ public class Main {
 				Producto producto = new Producto(SKU, nombre, precio, codigoRelacion, stock);
 				sistema.AñadirProducto(producto);
 			} else if (tipo.equals("FIGURE")) {
-				Date fechaActual1 = formato.parse(fechaActual);
-				Date fechaFigura = formato.parse(fechaVenta);
-				if (fechaFigura.after(fechaActual1)) {
+				LocalDate fechaFigura = LocalDate.parse(fechaVenta, formato);
+				if (fechaFigura.isAfter(fechaActual)) {
 					condicion = "pre-venta";
 					precio -= precio * 0.2;
-					//StdOut.print("SKU: " + SKU + "; Precio: " + precio + "; Condicion: " + condicion);
 				}
 				Producto producto = new Figura(SKU, nombre, precio, codigoRelacion, stock,fechaVenta, condicion);
 				sistema.AñadirProducto(producto);
@@ -350,8 +353,8 @@ public class Main {
 					StdOut.println("\nStock Añadido\n");
 					salir = true;
 				} else {
-					DateFormat formato = new SimpleDateFormat("dd/MM/YYYY");
-					String fechaActual = formato.format(new Date());
+					DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+					LocalDate fechaActual = LocalDate.parse(LocalDate.now().format(formato), formato);
 					boolean salir3 = false;
 					while (!salir3) {
 					try {
@@ -384,21 +387,13 @@ public class Main {
 							
 							while (!salir4) {
 								try {
-									Date fechaActual1 = formato.parse(fechaActual);
-									Date fechaProducto = formato.parse(fechaVenta);
-									StdOut.println(fechaActual1);
-									if (fechaProducto.after(fechaActual1)) {
+									LocalDate fechaFigura = LocalDate.parse(fechaVenta, formato);
+									if (fechaFigura.isAfter(fechaActual)) {
 										condicion = "pre-venta";
 										precio -= precio * 0.2;
 									}
-									if (!formato.format(fechaProducto).equals(fechaVenta)) {
-										StdOut.println(formato.format(fechaProducto) + "\n" + fechaVenta);
-										StdOut.println("\nXXXXXXX ¿ESTAS SEGURO DE QUE ESO ES UNA FECHA? INTENTALO OTRA VEZ XXXXXXXX\n");
-										fechaVenta = scanner.nextLine();
-									} else {
 									salir4 = true;
-									}
-								} catch (ParseException e) {
+								} catch (DateTimeParseException e) {
 									StdOut.println("\nXXXXXXXXX ESCRIBE UNA FECHA VALIDA PORFAVOR XXXXXXXXXXXX\n");
 									fechaVenta = scanner.nextLine();
 								}
