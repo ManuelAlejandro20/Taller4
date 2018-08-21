@@ -574,7 +574,7 @@ public class Main {
 		}
 	}
 	
-	public static void AgregarFiguraUsada (EmiEmiImpl sistema, Usuario cliente) {
+	public static void AgregarFiguraUsada (EmiEmiImpl sistema, Usuario dueño) {
 		boolean salir = false;
 		while (!salir) {
 			StdOut.println("\nEscriba el SKU de la figura usada que desea abonar (-1 para cancelar)\n");
@@ -585,24 +585,66 @@ public class Main {
 			if (sistema.BuscarProducto(SKU) != null && (sistema.BuscarProducto(SKU) instanceof Figura)){
 				Figura figuraEnTienda = (Figura)sistema.BuscarProducto(SKU);
 				if (!figuraEnTienda.getCondicion().equals("new")) {
-					StdOut.println("\nXXXXXXXXX NO SE PUEDEN ABONAR FIGURAS EN ESTADO DE PRE-VENTA XXXXXXXXXXXX\\n");
+					StdOut.println("\nXXXXXXXXX NO SE PUEDEN ABONAR FIGURAS EN ESTADO DE PRE-VENTA O QUE YA ESTEN ABONADAS XXXXXXXXXXXX\n");
+					return;
 				} else {
 					StdOut.println("\nFigura encontrada = SKU: " + figuraEnTienda.getSKU() + "; Nombre: " + figuraEnTienda.getNombre() + "; Precio en tienda: " + figuraEnTienda.getPrecio() + "\n");
 					StdOut.println("\nIngresa los siguientes datos para poder abonar la figura\n");
+					String condicion = "";
+					int precio = 0;
 					boolean salir2 = false;
 					while (!salir2) {
 						Scanner scanner = new Scanner(System.in);
 						try {
-							StdOut.println("\n");
+							StdOut.println("\nCondicion de la figura\n");
+							StdOut.println("A. Sellado");
+							StdOut.println("B. Aparentemente nuevo");
+							StdOut.println("C. Abierto");
+							StdOut.println("D. Daños menores");
+							StdOut.println("E. Daños visibles");
+							StdOut.println("F. Piezas extraviadas\n");
+							condicion = scanner.nextLine().toUpperCase();
+							boolean letraEquivocada = true;
+							switch (condicion) {
+								case "A":
+									letraEquivocada = false;
+									break;
+								case "B":
+									letraEquivocada = false;
+									break;
+								case "C":
+									letraEquivocada = false;
+									break;
+								case "D":
+									letraEquivocada = false;
+									break;
+								case "E":
+									letraEquivocada = false;
+									break;
+								case "F":
+									letraEquivocada = false;
+									break;
+								default:
+									StdOut.println("\nXXXXXXXXXXXX Escribe una opción valida porfavor XXXXXXXXXXXXX\n");
+							}
+							if (letraEquivocada) {
+								StdOut.println();
+							} else {
+								StdOut.println("\nIngresa el precio que le pondras a tu figura\n");
+								precio = scanner.nextInt();
+								salir2 = true;
+							}
 						} catch (InputMismatchException e) {
 							StdOut.println("\nXXXXXXXXX ESCRIBE UN NUMERO PORFAVOR XXXXXXXXXXXX\n");
 							scanner.nextLine();
 						}
 					}
+					sistema.AñadirFiguraUsada(SKU, condicion, precio, (Cliente)dueño);
+					StdOut.println("\nSu figura fue agregada\n");
+					salir = true;
 				}
-				
 			} else {
-				StdOut.print("\nXXXXXXXXX LA FIGURA NO EXISTE O EL SKU INGRESADO NO CORRESPONDE A UNA FIGURA XXXXXXXXXXXX\\n");
+				StdOut.print("\nXXXXXXXXX LA FIGURA NO EXISTE O EL SKU INGRESADO NO CORRESPONDE A UNA FIGURA XXXXXXXXXXXX\n");
 				salir = true;
 			}
 		}

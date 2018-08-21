@@ -25,9 +25,6 @@ public class EmiEmiImpl implements SistemaEmiEmi {
 		return this.usuarios.EliminarUsuario(usuario);
 	}
 	
-	/**
-	 * This can add a product or a preowned product
-	 */
 	@Override
 	public void AñadirProducto(Producto producto) {
 		this.productos.add(producto);
@@ -97,6 +94,20 @@ public class EmiEmiImpl implements SistemaEmiEmi {
 		}
 	}
 	
+	@Override
+	public void AñadirFiguraUsada (String SKU, String condicion, int precio, Cliente dueño) {
+		Figura figuraEnTienda = (Figura)BuscarProducto(SKU);
+		int digitoVerificador = 0;
+		Iterator<Producto> it = this.productos.iterator();
+		while (it.hasNext()) {
+			Producto producto = it.next();
+			if (producto.getSKU().contains(SKU) && producto.getNombre().equals(figuraEnTienda.getNombre())) {
+				digitoVerificador++;
+			}
+		}
+		Producto figuraUsada = new FiguraUsada(SKU + "-" + digitoVerificador, figuraEnTienda.getNombre(), precio, figuraEnTienda.getCodigoRelacion(), 1, figuraEnTienda.getFechaVenta(), condicion, dueño);
+		this.productos.add(figuraUsada);
+	}
 	
 	//region Generics List Methods -- Why don't you work like Visual Studio? D:<
 	
