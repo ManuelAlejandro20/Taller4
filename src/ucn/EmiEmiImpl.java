@@ -25,6 +25,9 @@ public class EmiEmiImpl implements SistemaEmiEmi {
 		return this.usuarios.EliminarUsuario(usuario);
 	}
 	
+	/**
+	 * This can add a product or a preowned product
+	 */
 	@Override
 	public void AñadirProducto(Producto producto) {
 		this.productos.add(producto);
@@ -93,6 +96,7 @@ public class EmiEmiImpl implements SistemaEmiEmi {
 			StdOut.println("\n- " + figura.deployProducto());
 		}
 	}
+	
 	
 	//region Generics List Methods -- Why don't you work like Visual Studio? D:<
 	

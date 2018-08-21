@@ -48,7 +48,6 @@ public class Main {
 	
 	public static void LeerProductos(EmiEmiImpl sistema) throws IOException, ParseException {
 		DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-		LocalDate localDate = LocalDate.now();
 		LocalDate fechaActual = LocalDate.parse(LocalDate.now().format(formato), formato);
 		ArchivoEntrada archivoProducto = new ArchivoEntrada("Productos.txt");
 		while (!archivoProducto.isEndFile()) {
@@ -191,6 +190,7 @@ public class Main {
 					case 4:
 						continue;
 					case 5:
+						AgregarFiguraUsada(sistema, usuario);
 						continue;
 					case -1:
 						salir2 = true;
@@ -413,11 +413,11 @@ public class Main {
 							
 							while(!salir5) {
 								try {
-									StdOut.println("\nEscribe el tipo de producto (MERCHANDISIG o FIGURE)");
+									StdOut.println("\nEscribe el tipo de producto (MERCHANDISING o FIGURE)");
 									String tipo = scanner.nextLine().toUpperCase();
 									switch (tipo) {
 									
-										case "MARCHANDISING":
+										case "MERCHANDISING":
 											Producto productoAgregar = new Producto (SKU, nombre, precio, codigoRelacion, stock);
 											sistema.AñadirProducto(productoAgregar);
 											StdOut.println("\nProducto agregado al inventario de la tienda\n");
@@ -510,10 +510,12 @@ public class Main {
 								case 2:
 									sistema.DesplegarMercancias(true);
 									break;
-								case -1:
+								case (-1):
 									salir2 = true;
+									continue;
 								default:
 									StdOut.println("\nXXXXXXXXXXXX Escribe una opción valida porfavor XXXXXXXXXXXXX\n");
+									opcionIncorrecta = true;
 							}
 							if (opcionIncorrecta) {
 								StdOut.println("\n¿Desea mostrar los productos fuera de stock?\n");
@@ -542,8 +544,9 @@ public class Main {
 								case 2:
 									sistema.DesplegarFiguras(true);
 									break;
-								case -1:
+								case (-1):
 									salir3 = true;
+									continue;
 								default:
 									StdOut.println("\nXXXXXXXXXXXX Escribe una opción valida porfavor XXXXXXXXXXXXX\n");
 									opcionIncorrecta2 = true;
@@ -567,8 +570,41 @@ public class Main {
 			} catch (InputMismatchException e) {
 				StdOut.println("\nXXXXXXXXX ESCRIBE UN NUMERO PORFAVOR XXXXXXXXXXXX\n");
 				scanner.nextLine();
+			}	
+		}
+	}
+	
+	public static void AgregarFiguraUsada (EmiEmiImpl sistema, Usuario cliente) {
+		boolean salir = false;
+		while (!salir) {
+			StdOut.println("\nEscriba el SKU de la figura usada que desea abonar (-1 para cancelar)\n");
+			String SKU = StdIn.readString();
+			if (SKU.equals("-1")) {
+				salir = true;
 			}
-			
+			if (sistema.BuscarProducto(SKU) != null && (sistema.BuscarProducto(SKU) instanceof Figura)){
+				Figura figuraEnTienda = (Figura)sistema.BuscarProducto(SKU);
+				if (!figuraEnTienda.getCondicion().equals("new")) {
+					StdOut.println("\nXXXXXXXXX NO SE PUEDEN ABONAR FIGURAS EN ESTADO DE PRE-VENTA XXXXXXXXXXXX\\n");
+				} else {
+					StdOut.println("\nFigura encontrada = SKU: " + figuraEnTienda.getSKU() + "; Nombre: " + figuraEnTienda.getNombre() + "; Precio en tienda: " + figuraEnTienda.getPrecio() + "\n");
+					StdOut.println("\nIngresa los siguientes datos para poder abonar la figura\n");
+					boolean salir2 = false;
+					while (!salir2) {
+						Scanner scanner = new Scanner(System.in);
+						try {
+							StdOut.println("\n");
+						} catch (InputMismatchException e) {
+							StdOut.println("\nXXXXXXXXX ESCRIBE UN NUMERO PORFAVOR XXXXXXXXXXXX\n");
+							scanner.nextLine();
+						}
+					}
+				}
+				
+			} else {
+				StdOut.print("\nXXXXXXXXX LA FIGURA NO EXISTE O EL SKU INGRESADO NO CORRESPONDE A UNA FIGURA XXXXXXXXXXXX\\n");
+				salir = true;
+			}
 		}
 	}
 	
