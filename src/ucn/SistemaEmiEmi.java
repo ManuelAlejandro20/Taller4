@@ -13,4 +13,5 @@ public interface SistemaEmiEmi {
 	public void DesplegarFiguras(boolean filtrarStock);
 	public void AñadirFiguraUsada (String SKU, String condicion, int precio, Cliente dueño);
 	public void ExportarDatos();
+	public void ConfirmarCompra(Cliente cliente);
 }

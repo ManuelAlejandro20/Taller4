@@ -231,6 +231,7 @@ public class Main {
 						EliminarUsuario(sistema);
 						continue;
 					case 4:
+						ExportarDatos(sistema);
 						continue;
 					case -1:
 						salir3 = true;
@@ -649,7 +650,11 @@ public class Main {
 			}
 		}
 	}
-	
+
+	public static void ExportarDatos(EmiEmiImpl sistema) {
+		sistema.ExportarDatos();
+		StdOut.println("\n✓✓✓✓✓✓ Los datos del sistema fueron desplegados ✓✓✓✓✓✓\n");
+	}
 	
 	
 	

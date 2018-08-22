@@ -112,16 +112,27 @@ public class EmiEmiImpl implements SistemaEmiEmi {
 	@Override
 	public void ExportarDatos() {
 		ArchivoSalida datos = new ArchivoSalida("Datos.txt");
-		Registro reg = new Registro(3);
+		Registro reg = new Registro(2);
+		Registro reg2 = new Registro(2);
 		int montoTotal;
 		int puntosTotales;
 		Iterator<Pais> itPais = paises.iterator();
+		Iterator<Pais> itPais2 = paises.iterator();
 		while(itpais.hasNext()){
 			Pais pais = (Pais)itPais.next();
 			montoTotal+=itpais.getIngresos();
 			puntosTotales+=itpais.getPuntos();
 		}
-		
+		reg.AgregarCampo(montoTotal);
+		reg.AgregarCampo(puntosTotales);
+		datos.writeRegistro(reg);
+		while(itPais2.hasNext()) {
+			Pais pais = (Pais)itPais2.next();
+			reg2.AgregarCampo(pais.getNombre());
+			reg2.AgregarCampo(pais.getIngresos());
+			datos.writeRegistro(reg2);
+			reg2 = new Registro(2);
+		}
 	}
 	
 	//region Generics List Methods -- Why don't you work like Visual Studio? D:<
