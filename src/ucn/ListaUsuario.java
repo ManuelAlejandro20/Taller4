@@ -111,3 +111,4 @@ public class ListaUsuario {
 	
 	public int getCant() {return this.cant;}
 }
+

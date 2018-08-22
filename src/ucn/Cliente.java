@@ -127,3 +127,4 @@ public class Cliente extends Usuario {
 		return ("Email: " + this.getEmail() + "; Nombre: " + this.getNombre() + "; Pais: " + this.pais + "; Puntos: " + this.puntos);
 	}
 }
+

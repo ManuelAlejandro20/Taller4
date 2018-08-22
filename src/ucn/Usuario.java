@@ -60,3 +60,4 @@ public class Usuario {
 		return ("Email: " + this.email + "; Nombre: " + this.nombre);
 	}
 }
+

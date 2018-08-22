@@ -77,3 +77,4 @@ public class Figura extends Producto {
 		}
 	}
 }
+

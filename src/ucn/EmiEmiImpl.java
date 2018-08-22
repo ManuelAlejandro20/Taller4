@@ -1,5 +1,6 @@
 package ucn;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -110,26 +111,26 @@ public class EmiEmiImpl implements SistemaEmiEmi {
 	}
 	
 	@Override
-	public void ExportarDatos() {
+	public void ExportarDatos() throws IOException {
 		ArchivoSalida datos = new ArchivoSalida("Datos.txt");
 		Registro reg = new Registro(2);
 		Registro reg2 = new Registro(2);
-		int montoTotal;
-		int puntosTotales;
+		int montoTotal = 0;
+		int puntosTotales = 0;
 		Iterator<Pais> itPais = paises.iterator();
 		Iterator<Pais> itPais2 = paises.iterator();
-		while(itpais.hasNext()){
+		while(itPais.hasNext()){
 			Pais pais = (Pais)itPais.next();
-			montoTotal+=itpais.getIngresos();
-			puntosTotales+=itpais.getPuntos();
+			montoTotal += pais.getIngresos();
+			puntosTotales += pais.getPuntos();
 		}
-		reg.AgregarCampo(montoTotal);
-		reg.AgregarCampo(puntosTotales);
+		reg.agregarCampo(montoTotal);
+		reg.agregarCampo(puntosTotales);
 		datos.writeRegistro(reg);
 		while(itPais2.hasNext()) {
 			Pais pais = (Pais)itPais2.next();
-			reg2.AgregarCampo(pais.getNombre());
-			reg2.AgregarCampo(pais.getIngresos());
+			reg2.agregarCampo(pais.getNombre());
+			reg2.agregarCampo(pais.getIngresos());
 			datos.writeRegistro(reg2);
 			reg2 = new Registro(2);
 		}

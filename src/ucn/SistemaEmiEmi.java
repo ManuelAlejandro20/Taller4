@@ -1,5 +1,6 @@
 package ucn;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public interface SistemaEmiEmi {
@@ -12,6 +13,5 @@ public interface SistemaEmiEmi {
 	public void DesplegarMercancias(boolean filtrarStock);
 	public void DesplegarFiguras(boolean filtrarStock);
 	public void AñadirFiguraUsada (String SKU, String condicion, int precio, Cliente dueño);
-	public void ExportarDatos();
-	public void ConfirmarCompra(Cliente cliente);
+	public void ExportarDatos() throws IOException;
 }

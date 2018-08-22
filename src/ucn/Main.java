@@ -81,7 +81,7 @@ public class Main {
 		}
 	}
 	
-	public static void Menu(EmiEmiImpl sistema) {
+	public static void Menu(EmiEmiImpl sistema) throws IOException {
 		Scanner scanner = new Scanner(System.in);
 		boolean salir = false;
 		while(!salir) {
@@ -144,7 +144,7 @@ public class Main {
 		}
 	}
 
-	public static void IniciarSesion(EmiEmiImpl sistema) {
+	public static void IniciarSesion(EmiEmiImpl sistema) throws IOException {
 		Scanner scanner = new Scanner(System.in);
 		StdOut.println("\nIngresa tu email porfavor\n");
 		String email = scanner.nextLine();
@@ -208,7 +208,7 @@ public class Main {
 		}
 	}
 	
-	public static void SubMenuAdmin(EmiEmiImpl sistema, Usuario usuario){
+	public static void SubMenuAdmin(EmiEmiImpl sistema, Usuario usuario) throws IOException{
 		Scanner scanner = new Scanner(System.in);
 		boolean salir3 = false;
 		while(!salir3) {
@@ -651,53 +651,8 @@ public class Main {
 		}
 	}
 
-	public static void ExportarDatos(EmiEmiImpl sistema) {
+	public static void ExportarDatos(EmiEmiImpl sistema) throws IOException {
 		sistema.ExportarDatos();
 		StdOut.println("\n✓✓✓✓✓✓ Los datos del sistema fueron desplegados ✓✓✓✓✓✓\n");
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }
-
-

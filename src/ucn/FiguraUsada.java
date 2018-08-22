@@ -66,3 +66,4 @@ public class FiguraUsada extends Figura {
 		return ("SKU: " + this.getSKU() + "; Nombre: " + this.getNombre() + "; Precio: " + this.getPrecio() + "; Condicion: " + condicionDesplegar + "; Stock: 1");
 	}
 }
+
