@@ -109,6 +109,19 @@ public class EmiEmiImpl implements SistemaEmiEmi {
 		this.productos.add(figuraUsada);
 	}
 	
+	@Override
+	public void ExportarDatos() {
+		ArchivoSalida datos = new ArchivoSalida("Datos.txt");
+		Registro reg = new Registro(3);
+		int montoTotal;
+		Iterator<Pais> itPais = paises.iterator();
+		while(itpais.hasNext()){
+			Pais pais = (Pais)itPais.next();
+			montototal+=itpais.getIngresos();
+		}
+		
+	}
+	
 	//region Generics List Methods -- Why don't you work like Visual Studio? D:<
 	
 	public Producto BuscarProducto (String SKU) {

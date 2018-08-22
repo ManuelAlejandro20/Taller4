@@ -15,6 +15,8 @@ public class Cliente extends Usuario {
 	// The client points
 	private int puntos;
 	
+	private int puntosUsados;
+	
 	// Thew client shopping cart
 	private ArrayList<Producto> carritoCompras;
 	
@@ -36,6 +38,7 @@ public class Cliente extends Usuario {
 		super(email, contraseña, nombre);
 		this.pais = pais;
 		this.puntos = puntos;
+		this.puntosUsados = 0;
 		this.carritoCompras = new ArrayList<Producto>();
 	}
 
