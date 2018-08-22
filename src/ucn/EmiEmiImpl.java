@@ -3,6 +3,8 @@ package ucn;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 
 public class EmiEmiImpl implements SistemaEmiEmi {
 	
@@ -112,9 +114,8 @@ public class EmiEmiImpl implements SistemaEmiEmi {
 	
 	@Override
 	public void ExportarDatos() throws IOException {
-		ArchivoSalida datos = new ArchivoSalida("Datos.txt");
-		Registro reg = new Registro(2);
-		Registro reg2 = new Registro(2);
+		FileWriter _datos = new FileWriter("Datos.txt");
+		PrintWriter pr = new PrintWriter(_datos);
 		int montoTotal = 0;
 		int puntosTotales = 0;
 		Iterator<Pais> itPais = paises.iterator();
@@ -124,16 +125,22 @@ public class EmiEmiImpl implements SistemaEmiEmi {
 			montoTotal += pais.getIngresos();
 			puntosTotales += pais.getPuntos();
 		}
-		reg.agregarCampo(montoTotal);
-		reg.agregarCampo(puntosTotales);
-		datos.writeRegistro(reg);
+		pr.print("El Ingreso total es de $");
+		pr.print(montoTotal);
+		pr.println();
+		pr.print("Los Puntos canjeados totales son: ");
+		pr.print(puntosTotales);
+		pr.println();
+		pr.println();
+		pr.print("Montos Totales por paises:");
+		pr.println();
 		while(itPais2.hasNext()) {
 			Pais pais = (Pais)itPais2.next();
-			reg2.agregarCampo(pais.getNombre());
-			reg2.agregarCampo(pais.getIngresos());
-			datos.writeRegistro(reg2);
-			reg2 = new Registro(2);
+			pr.print(pais.getNombre().toUpperCase() + ": ");
+			pr.print(pais.getIngresos());
+			pr.println();
 		}
+		pr.close();
 	}
 	
 	//region Generics List Methods -- Why don't you work like Visual Studio? D:<
