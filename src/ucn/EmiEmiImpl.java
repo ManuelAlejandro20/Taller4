@@ -114,10 +114,12 @@ public class EmiEmiImpl implements SistemaEmiEmi {
 		ArchivoSalida datos = new ArchivoSalida("Datos.txt");
 		Registro reg = new Registro(3);
 		int montoTotal;
+		int puntosTotales;
 		Iterator<Pais> itPais = paises.iterator();
 		while(itpais.hasNext()){
 			Pais pais = (Pais)itPais.next();
-			montototal+=itpais.getIngresos();
+			montoTotal+=itpais.getIngresos();
+			puntosTotales+=itpais.getPuntos();
 		}
 		
 	}
